@@ -4,7 +4,6 @@ import java.util.*;
 public class MatrixMachine {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		int i;                    // rows
 		int j;                    // columns
@@ -17,6 +16,7 @@ public class MatrixMachine {
 		
 		Matrix test = new Matrix(i,j);
 		test.fillMatrix(reader);
+		test.print();
 		
 		reader.close();
 	}
@@ -52,6 +52,7 @@ public class MatrixMachine {
 		}
 		return j;
 	}
+	
 }
 
 class Matrix {
@@ -74,15 +75,6 @@ class Matrix {
 		table = new int[rows][columns];
 	}
 	
-	public int getRows() {
-		return rows;
-	}
-
-
-	public int getColumns() {
-		return columns;
-	}
-	
 	public void fillMatrix(Scanner reader) {
 		int i;              // row
 		int j;              // column
@@ -99,7 +91,19 @@ class Matrix {
 			}
 			
 		}
-		
 	} 
+	
+	public void  print () {
+		int i, j;
+		
+		for(i = 0; i < table.length; i++)
+		{
+			for(j = 0; j < table[i].length; j++)
+			{
+				System.out.print(table[i][j] + " ");
+			}
+			System.out.print('\n');
+		}
+	}
 	
 }
