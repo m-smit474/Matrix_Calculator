@@ -2,9 +2,13 @@ import java.util.*;
 
 
 public class MatrixMachine {
+	boolean exit = false;
 
 	public static void main(String[] args) {
 
+		MatrixMachine calc = new MatrixMachine();
+		calc.runMenu();
+/*		
 		int i;                    // rows
 		int j;                    // columns
 		
@@ -16,9 +20,23 @@ public class MatrixMachine {
 		
 		Matrix test = new Matrix(i,j);
 		test.fillMatrix(reader);
+
+		i = getRows(reader);
+		j = getColumns(reader);
+		
+		Matrix B = new Matrix(i,j);
+		B.fillMatrix(reader);
+		
+		Matrix C = test.add(B);
+		
 		test.print();
+		System.out.print("\n");
+		B.print();
+		System.out.print("\n");
+		C.print();
 		
 		reader.close();
+*/		
 	}
 
 	public static int getRows(Scanner reader) {
@@ -53,6 +71,84 @@ public class MatrixMachine {
 		return j;
 	}
 	
+	private int getChoice() {
+		int choice = -1;
+		Scanner reader = new Scanner(System.in);
+		
+		while(choice < 0 || choice > 2)
+		{
+			try {
+				System.out.println("\nEnter your choice: ");
+				choice = Integer.parseInt(reader.nextLine());
+			} catch(NumberFormatException ex) {
+				System.out.println("Invalid selection; please select an integer.");
+			}
+		}
+		return choice;
+	}
+	
+	public void runMenu() {
+		printHeader();
+		while(!exit) 
+		{
+			printMenu();
+			int choice = getChoice();
+			performAction(choice);
+		}
+	}
+
+	private void printHeader() {
+		System.out.println("+--------------------------------------------+");
+		System.out.println("|            Welcome to Smit's               |");
+		System.out.println("|            Matrix Calculator               |");
+		System.out.println("+--------------------------------------------+");
+	}
+	
+	private void printMenu() {
+		System.out.println("Please make a selection: ");
+		System.out.println("1) Add matricies");
+		System.out.println("2) Multiply matricies");
+		System.out.println("0) Exit");
+	}
+	
+	private void performAction(int choice) {
+		switch(choice)
+		{
+		case 0:
+			exit = true;
+			System.out.println("Thank you for using Smit's Matrix Calculator!");
+			break;
+		case 1:
+			System.out.println("MATRICIES MUST BE SAME SIZE TO ADD\n");
+			System.out.println("\nFor matrix A");
+			int i,j;
+			Scanner reader = new Scanner(System.in);
+			
+			i = getRows(reader);
+			j = getColumns(reader);
+			Matrix A = new Matrix(i,j);
+			A.fillMatrix(reader);
+			
+			System.out.println("\nFor matrix B");
+			
+			i = getRows(reader);
+			j = getColumns(reader);
+			Matrix B = new Matrix(i,j);
+			B.fillMatrix(reader);
+			
+			Matrix C = A.add(B);
+			
+			C.print();
+			break;
+		case 2:
+			System.out.println("Matricies AB must have dimensions MxN and NxJ");
+			System.out.println("in order to multiply(columns of A must equal rows of B)\n");
+			break;
+		default:
+			System.out.println("Choice not found\n");
+			break;
+		}
+	}
 }
 
 class Matrix {
@@ -85,6 +181,7 @@ class Matrix {
 			for(j = 0; j < table[i].length; j++)
 			{
 				while(!reader.hasNextInt()) {			// Only accepts integers
+					System.out.println("Please enter an integer.");
 					reader.next();
 				}
 				table[i][j] = reader.nextInt();
@@ -93,7 +190,7 @@ class Matrix {
 		}
 	} 
 	
-	public void  print () {
+	public void  print() {
 		int i, j;
 		
 		for(i = 0; i < table.length; i++)
@@ -105,5 +202,48 @@ class Matrix {
 			System.out.print('\n');
 		}
 	}
+	
+	public Matrix add(Matrix other) {
+		Matrix result;
+		int i,j;
+		
+		if(rows == other.getRows() && columns == other.getColumns()) 
+		{
+			// do addition
+			result = new Matrix(rows, columns);
+			int[][] otherTable = other.getTable();
+			
+			for(i = 0; i < table.length; i++)
+			{
+				for(j = 0; j < table[i].length; j++)
+				{
+					result.table[i][j] = table[i][j] + otherTable[i][j];
+				}
+			}
+			
+		}
+		else
+		{
+			System.out.println("Matricies were of different size. Returning null matrix.");
+			result = new Matrix(0,0);
+		}
+		
+		return result;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public int[][] getTable() {
+		return table;
+	}
+	
+	
+	
 	
 }
