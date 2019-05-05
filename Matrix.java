@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Matrix {
+	static Scanner reader = new Scanner(System.in);
 	
 	private int rows;
 	private int columns;
@@ -21,7 +22,7 @@ public class Matrix {
 		table = new int[rows][columns];
 	}
 	
-	public void fillMatrix(Scanner reader) {
+	public void fillMatrix() {
 		int i;              // row
 		int j;              // column
 		
@@ -57,7 +58,7 @@ public class Matrix {
 		Matrix result;
 		int i,j;
 		
-		if(rows == other.getRows() && columns == other.getColumns()) 
+		if(rows == other.getRows() && columns == other.getColumns())             // Checks that Matrices are the same size
 		{
 			// do addition
 			result = new Matrix(rows, columns);
@@ -74,7 +75,7 @@ public class Matrix {
 		}
 		else
 		{
-			System.out.println("Matricies were of different size. Returning null matrix.");
+			System.out.println("Matrices were of different size. Returning null matrix.");
 			result = new Matrix(0,0);
 		}
 		
