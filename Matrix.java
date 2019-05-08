@@ -81,6 +81,34 @@ public class Matrix {
 		
 		return result;
 	}
+	
+	public Matrix multiply(Matrix other) {
+		Matrix result;
+		int i,j, index;
+		
+		if(columns == other.getRows())                  // do multiplication
+		{
+			result = new Matrix(rows, other.getColumns());
+			
+			for(i = 0; i < result.table.length; i++)                  // Goes through every spot of new matrix
+			{
+				for(j = 0; j < result.table[i].length; j++)
+				{
+					for(index = 0; index < columns; index++)
+					{
+						result.table[i][j] += table[i][index] * other.table[index][j];        // Assumes Matrix is initialized to 0
+					}
+				}
+			}
+		}
+		else
+		{
+			System.out.println(columns + " != " + other.getRows() + ",  " +"so Matrices cannot be multiplied");
+			result = new Matrix(1,1);
+		}
+		
+		return result;
+	}
 
 	public int getRows() {
 		return rows;
