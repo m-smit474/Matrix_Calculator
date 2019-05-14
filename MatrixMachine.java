@@ -53,7 +53,10 @@ public class MatrixMachine {
 		return j;
 	}
 /*********************************************************************
+ * This functions reads an integer from the user until a valid integer
+ * is read
  * 
+ * Once one of the options has been selected, the integer is returned
  ********************************************************************/
 	private int getChoice() {
 		int choice = -1;
@@ -72,7 +75,7 @@ public class MatrixMachine {
 	}
 	
 /*********************************************************************
- * 
+ * Runs the menu until the user selects exit
  ********************************************************************/
 	public void runMenu() {
 		printHeader();
@@ -85,7 +88,7 @@ public class MatrixMachine {
 	}
 
 /*********************************************************************
- * 
+ * Prints a nice header message at the begininning of the program
  ********************************************************************/
 	private void printHeader() {
 		System.out.println("+--------------------------------------------+");
@@ -95,7 +98,7 @@ public class MatrixMachine {
 	}
 
 /*********************************************************************
- * 
+ * Prints the menu options
  ********************************************************************/
 	private void printMenu() {
 		System.out.println("What would you like to do? ");
@@ -105,7 +108,13 @@ public class MatrixMachine {
 	}
 
 /*********************************************************************
+ * Takes an integer as a parameter which represents a selection
  * 
+ * Based on the recieved integer, an action is performed
+ * 
+ * case 0 - Exit
+ * case 1 - Add
+ * case 2 - Multiply
  ********************************************************************/
 	private void performAction(int choice) {
 		int i,j;

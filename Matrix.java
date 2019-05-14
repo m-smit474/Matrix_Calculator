@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/*******************************************************************
+ * This class represent a matrix
+ * 
+ * Uses a 2D array to represent the array which consists of rows and
+ * columns which cannot be less than 0
+ ******************************************************************/
 public class Matrix {
 	static Scanner reader = new Scanner(System.in);
 	
@@ -22,6 +28,11 @@ public class Matrix {
 		table = new int[rows][columns];
 	}
 	
+	/****************************************************************
+	 * Fills every available position in a matrix
+	 * 
+	 * Will only allocate an integer to a position
+	 ***************************************************************/
 	public void fillMatrix() {
 		int i;              // row
 		int j;              // column
@@ -41,6 +52,12 @@ public class Matrix {
 		}
 	} 
 	
+	/****************************************************************
+	 * Goes through matrix and prints out every element of the 
+	 * matrix in its correct position.
+	 * 
+	 * Does not change matrix
+	 ***************************************************************/
 	public void  print() {
 		int i, j;
 		
@@ -54,6 +71,15 @@ public class Matrix {
 		}
 	}
 	
+	/**************************************************************
+	 * Adds the elements of two matrices and fills a new matrix
+	 * with the results
+	 * 
+	 * Returns the new matrix
+	 * 
+	 * Can only be done if the matrix is the same size as the 
+	 * matrix being passed
+	 *************************************************************/
 	public Matrix add(Matrix other) {
 		Matrix result;
 		int i,j;
@@ -82,6 +108,12 @@ public class Matrix {
 		return result;
 	}
 	
+	/****************************************************************
+	 * Does matrix multiplication to create a new array
+	 * 
+	 * The matrix must have the same number of columns as the number
+	 * of rows in the passed matrix
+	 ***************************************************************/
 	public Matrix multiply(Matrix other) {
 		Matrix result;
 		int i,j, index;
@@ -109,7 +141,11 @@ public class Matrix {
 		
 		return result;
 	}
-
+	
+	/************************************************************************
+	* The following three methods are simple getters to be used by the client
+	*************************************************************************/ 
+	
 	public int getRows() {
 		return rows;
 	}
