@@ -4,7 +4,7 @@ A matrix calculator coded in java
 *** Requires JDK on system ***
 
 
-To use Smit's Matix Calculator:
+To use Smit's Matrix Calculator:
 
 1. Download zip file
 2. Extract files 
